@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: kindergarten-registration-center
+  security:
+    basic:
+    enabled: true #开启http认证
+    user:
+      name: zc
+      password: zc
+---
+server:
+  port: 8063
+spring:
+  profiles: discovery1 #指定profile=discovery1
+
+eureka:
+  instance:
+    hostname: discovery1
+    prefer-ip-address: true #注册中心优先显示ip(true开启)
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} #该配置项作用:注册中心显示该服务运行的服务器ip和端口
+    enable-self-preservation: false #关闭自我保护
+    eviction-interval-timer-in-ms: 10*1000 #10s清理无效服务
+  client:
+    serviceUrl:
+      defaultZone: http://zc:zc@${eureka.host:discovery2}:${eureka.port:8064}/eureka/
+
+---
+server:
+  port: 8064
+spring:
+  profiles: discovery2 #指定profile=discovery2
+
+eureka:
+  instance:
+    hostname: discovery2
+    prefer-ip-address: true #注册中心优先显示ip(true开启)
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} #该配置项作用:注册中心显示该服务运行的服务器ip和端口
+    enable-self-preservation: false #关闭自我保护
+    eviction-interval-timer-in-ms: 10*1000 #10s清理无效服务
+  client:
+    serviceUrl:
+      defaultZone: http://zc:zc@${eureka.host:discovery1}:${eureka.port:8063}/eureka/

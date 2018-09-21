@@ -1,0 +1,81 @@
+spring:
+  application:
+    name: kindergarten-gateway
+  redis:
+    database: 10
+    host: ${redis.host:192.168.0.108}
+    password: ${redis.password:zcadmin}
+    port: ${redis.port:6379}
+    pool:
+      max-idle: 600
+      min-idle: 0
+      max-active: 600
+      max-wait: 10000
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:192.168.0.108}
+    port:  ${RABBIT_MQ_PORT:5672}
+    username: guest
+    password: guest
+  sleuth:
+    enabled: true
+    http:
+      legacy:
+        enabled: true
+  cloud:
+    gateway:
+      locator:
+        enabled: true
+      routes:
+      # =====================================
+      - id: ace-auth
+        uri: lb://ace-auth
+        order: 8000
+        predicates:
+        - Path=/api/auth/**
+        filters:
+        - StripPrefix=2
+      - id: ace-admin
+        uri: lb://ace-admin
+        order: 8001
+        predicates:
+        - Path=/api/admin/**
+        filters:
+        - StripPrefix=2
+
+server:
+  port: 8765
+
+eureka:
+  instance:
+    #前三项为actuator在springboot2.0的配置
+    statusPageUrlPath: /actuator/info
+    healthCheckUrlPath: /actuator/health
+    home-page-url-path: /
+    prefer-ip-address: true #注册中心优先显示ip(true开启)
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} #该配置项作用:注册中心显示该服务运行的服务器ip和端口
+  client:
+    serviceUrl:
+      defaultZone: http://zc:zc@${eureka.host:discovery1}:${eureka.port:8063}/eureka/,http://zc:zc@${eureka.host2:discovery2}:${eureka.port2:8064}/eureka/
+#请求和响应GZIP压缩支持
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+logging:
+  level:
+    com.zc.kindergarten.gateway: info
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
