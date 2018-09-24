@@ -11,9 +11,9 @@
     <modules>
         <module>kindergarten-commons</module>
         <module>kindergarten-registration-center</module>
-        <module>kindergarten-auth-center</module>
         <module>kindergarten-servers</module>
         <module>kindergarten-gateway</module>
+        <module>kindergarten-auth-center</module>
     </modules>
 
     <parent>
@@ -25,13 +25,12 @@
         <maven.compile.source>1.8</maven.compile.source>
         <maven.compile.target>1.8</maven.compile.target>
     </properties>
+
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.14</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

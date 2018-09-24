@@ -1,0 +1,126 @@
+server:
+  port: 9777 #启动端口
+spring:
+  application:
+    name: kindergarten-auth-center
+  redis:
+    database: 2
+    host: ${REDIS_HOST:192.168.153.129}
+    port: ${REDIS_PORT:6379}
+    password: 172594
+    pool:
+    max-active: 20
+  datasource:
+    druid:
+      url: jdbc:mysql://192.168.153.129:3306/ag_auth_v1?useUnicode=true&characterEncoding=UTF8&useSSL=false
+      username: root
+      password: 172594
+      initial-size: 1
+      max-active: 20
+      min-idle: 1
+      max-pool-prepared-statement-per-connection-size: 20
+      max-wait: 60000
+      min-evictable-idle-time-millis: 300000
+      pool-prepared-statements: true
+      filters: stat
+      stat-view-servlet:
+        allow:
+        deny:
+        enabled: true
+        login-password: admin
+        login-username: admin
+        reset-enable: true
+        url-pattern: /druid/*
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      validation-query: SELECT 'x'
+      web-stat-filter:
+        enabled: true
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+        principal-cookie-name: admin
+        principal-session-name: admin
+        profile-enable: true
+        session-stat-enable: false
+        session-stat-max-count: 1000
+        url-pattern: /*
+      aop-patterns: com.zc.kindergarten.auth.server.service.*
+
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:192.168.153.129}
+    port:  ${RABBIT_MQ_PORT:5672}
+    username: guest
+    password: guest
+  sleuth:
+    enabled: true
+    http:
+      legacy:
+        enabled: true
+
+mybatis:
+  mapper-locations: "classpath*:mapper/*.xml"
+
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000 ##并发执行的最大线程数，默认10
+      maxQueueSize: 1000 ##BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+eureka:
+  instance:
+    statusPageUrlPath: /actuator/info
+    healthCheckUrlPath: /actuator/health
+    home-page-url-path: /
+    prefer-ip-address: true #注册中心优先显示ip(true开启)
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} #该配置项作用:注册中心显示该服务运行的服务器ip和端口
+    enable-self-preservation: false #关闭自我保护
+    eviction-interval-timer-in-ms: 10*1000 #10s清理无效服务
+  client:
+    serviceUrl:
+      defaultZone: http://zc:zc@${eureka.host:discovery1}:${eureka.port:8063}/eureka/,http://zc:zc@${eureka.host2:discovery2}:${eureka.port2:8064}/eureka/
+
+jwt:
+  token-header: Authorization
+  expire: 14400
+  rsa-secret: xx1WET12^%3^(WE45
+
+client:
+  id: ace-auth
+  secret: 123456
+  token-header: x-client-token
+  expire: 14400
+  rsa-secret: x2318^^(*WRYQWR(QW&T
+
+logging:
+  level:
+    #        tk.mybatis: DEBUG
+    com.zc.kindergarten.auth.server: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
