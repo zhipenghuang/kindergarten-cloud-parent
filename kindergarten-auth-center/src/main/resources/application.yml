@@ -108,7 +108,7 @@ jwt:
   rsa-secret: xx1WET12^%3^(WE45
 
 client:
-  id: ace-auth
+  id: kindergarten-auth-center
   secret: 123456
   token-header: x-client-token
   expire: 14400
