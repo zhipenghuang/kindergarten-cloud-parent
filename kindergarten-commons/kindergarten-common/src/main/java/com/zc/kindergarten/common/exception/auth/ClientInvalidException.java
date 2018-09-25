@@ -1,7 +1,7 @@
 package com.zc.kindergarten.common.exception.auth;
 
 
-import com.zc.kindergarten.common.constant.CommonConstants;
+import com.zc.kindergarten.common.error.Errors;
 import com.zc.kindergarten.common.exception.BaseException;
 
 /**
@@ -9,7 +9,16 @@ import com.zc.kindergarten.common.exception.BaseException;
  * @create 2018/9/19.
  */
 public class ClientInvalidException extends BaseException {
-    public ClientInvalidException(String message) {
-        super(message, CommonConstants.EX_CLIENT_INVALID_CODE);
+
+    public ClientInvalidException() {
+        super();
+    }
+
+    public ClientInvalidException(Errors error, Object data) {
+        super(error, data);
+    }
+
+    public ClientInvalidException(Errors error) {
+        super(error);
     }
 }

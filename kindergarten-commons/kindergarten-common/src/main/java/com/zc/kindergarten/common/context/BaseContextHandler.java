@@ -2,28 +2,20 @@ package com.zc.kindergarten.common.context;
 
 import com.zc.kindergarten.common.constant.CommonConstants;
 import com.zc.kindergarten.common.util.StringHelper;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * @author hzp
  * @create 2018/9/19.
  */
 public class BaseContextHandler {
-    public static ThreadLocal<Map<String, Object>> threadLocal = new ThreadLocal<Map<String, Object>>();
+    public static ThreadLocal<Map<String, Object>> threadLocal = new ThreadLocal<>();
 
     public static void set(String key, Object value) {
         Map<String, Object> map = threadLocal.get();
         if (map == null) {
-            map = new HashMap<String, Object>();
+            map = new HashMap<>();
             threadLocal.set(map);
         }
         map.put(key, value);
@@ -32,7 +24,7 @@ public class BaseContextHandler {
     public static Object get(String key){
         Map<String, Object> map = threadLocal.get();
         if (map == null) {
-            map = new HashMap<String, Object>();
+            map = new HashMap<>();
             threadLocal.set(map);
         }
         return map.get(key);
@@ -78,7 +70,7 @@ public class BaseContextHandler {
         threadLocal.remove();
     }
 
-    @RunWith(MockitoJUnitRunner.class)
+   /* @RunWith(MockitoJUnitRunner.class)
     public static class UnitTest {
         private Logger logger = LoggerFactory.getLogger(UnitTest.class);
 
@@ -114,5 +106,5 @@ public class BaseContextHandler {
             BaseContextHandler.setUsername("test2");
             assertEquals(BaseContextHandler.getUsername(), "test2");
         }
-    }
+    }*/
 }

@@ -1,7 +1,6 @@
 package com.zc.kindergarten.common.exception.auth;
 
-
-import com.zc.kindergarten.common.constant.CommonConstants;
+import com.zc.kindergarten.common.error.Errors;
 import com.zc.kindergarten.common.exception.BaseException;
 
 /**
@@ -9,8 +8,16 @@ import com.zc.kindergarten.common.exception.BaseException;
  * @create 2018/9/19.
  */
 public class ClientForbiddenException extends BaseException {
-    public ClientForbiddenException(String message) {
-        super(message, CommonConstants.EX_CLIENT_FORBIDDEN_CODE);
-    }
 
+	public ClientForbiddenException() {
+		super();
+	}
+
+	public ClientForbiddenException(Errors error, Object data) {
+		super(error, data);
+	}
+
+	public ClientForbiddenException(Errors error) {
+		super(error);
+	}
 }

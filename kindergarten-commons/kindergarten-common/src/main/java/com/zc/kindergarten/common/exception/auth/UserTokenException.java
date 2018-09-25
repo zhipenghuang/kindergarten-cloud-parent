@@ -1,7 +1,7 @@
 package com.zc.kindergarten.common.exception.auth;
 
 
-import com.zc.kindergarten.common.constant.CommonConstants;
+import com.zc.kindergarten.common.error.Errors;
 import com.zc.kindergarten.common.exception.BaseException;
 
 /**
@@ -9,7 +9,16 @@ import com.zc.kindergarten.common.exception.BaseException;
  * @create 2018/9/19.
  */
 public class UserTokenException extends BaseException {
-    public UserTokenException(String message) {
-        super(message, CommonConstants.EX_USER_INVALID_CODE);
-    }
+
+	public UserTokenException() {
+		super();
+	}
+
+	public UserTokenException(Errors error, Object data) {
+		super(error, data);
+	}
+
+	public UserTokenException(Errors error) {
+		super(error);
+	}
 }

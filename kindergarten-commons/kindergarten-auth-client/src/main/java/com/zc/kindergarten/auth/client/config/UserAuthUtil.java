@@ -1,5 +1,6 @@
 package com.zc.kindergarten.auth.client.config;
 
+import com.zc.kindergarten.common.error.AuthErrors;
 import com.zc.kindergarten.common.exception.auth.UserTokenException;
 import com.zc.kindergarten.common.utils.jwt.IjwtInfo;
 import com.zc.kindergarten.common.utils.jwt.JwtHelper;
@@ -14,17 +15,18 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class UserAuthUtil {
-    @Autowired
-    private UserAuthConfig userAuthConfig;
-    public IjwtInfo getInfoFromToken(String token) throws Exception {
-        try {
-            return JwtHelper.getInfoFromToken(token, userAuthConfig.getPubKeyByte());
-        }catch (ExpiredJwtException ex){
-            throw new UserTokenException("User token expired!");
-        }catch (SignatureException ex){
-            throw new UserTokenException("User token signature error!");
-        }catch (IllegalArgumentException ex){
-            throw new UserTokenException("User token is null or empty!");
-        }
-    }
+	@Autowired
+	private UserAuthConfig userAuthConfig;
+
+	public IjwtInfo getInfoFromToken(String token) throws Exception {
+		try {
+			return JwtHelper.getInfoFromToken(token, userAuthConfig.getPubKeyByte());
+		} catch (ExpiredJwtException ex) {
+			throw new UserTokenException(AuthErrors.USER_TOKEN_EXPIRED);
+		} catch (SignatureException ex) {
+			throw new UserTokenException(AuthErrors.USER_TOKEN_SIGNATURE_ERROR);
+		} catch (IllegalArgumentException ex) {
+			throw new UserTokenException(AuthErrors.USER_TOKEN_IS_NULL_OR_EMPTY);
+		}
+	}
 }

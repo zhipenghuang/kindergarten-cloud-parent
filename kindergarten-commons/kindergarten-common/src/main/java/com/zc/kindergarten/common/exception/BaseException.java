@@ -1,41 +1,41 @@
 package com.zc.kindergarten.common.exception;
 
+import com.zc.kindergarten.common.error.Errors;
+import com.zc.kindergarten.common.error.SystemErrors;
+
 /**
  * @author hzp
  * @create 2018/9/19.
  */
-public class BaseException extends RuntimeException {
-    private int status = 200;
+public class BaseException extends RuntimeException implements ExceptionScalable {
+	private static final long serialVersionUID = 5692243177785821696L;
 
-    public int getStatus() {
-        return status;
-    }
+	private Errors error;
+	private Object data;
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+	public BaseException() {
+	}
 
-    public BaseException() {
-    }
+	public BaseException(Errors error) {
+		this.error = error;
+	}
 
-    public BaseException(String message,int status) {
-        super(message);
-        this.status = status;
-    }
+	public BaseException(Errors error, Object data) {
+		this.error = error;
+		this.data = data;
+	}
 
-    public BaseException(String message) {
-        super(message);
-    }
+	public BaseException(Errors error, String msg, Object data) {
+		this.error = error;
+		this.error.setMessage(msg);
+		this.data = data;
+	}
 
-    public BaseException(String message, Throwable cause) {
-        super(message, cause);
-    }
+	public Errors getError() {
+		return error;
+	}
 
-    public BaseException(Throwable cause) {
-        super(cause);
-    }
-
-    public BaseException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
+	public Object getData() {
+		return data;
+	}
 }

@@ -1,6 +1,7 @@
 package com.zc.kindergarten.common.msg;
 
 import com.zc.kindergarten.common.error.Errors;
+import com.zc.kindergarten.common.error.SystemErrors;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -35,14 +36,14 @@ public class ResponseEntity<T2> implements Serializable {
 	private T2 data;
 
 	public ResponseEntity() {
-		this.ecode = Errors.SUCCESS.code;
-		this.message = Errors.SUCCESS.label;
+		this.ecode = SystemErrors.SUCCESS.code;
+		this.message = SystemErrors.SUCCESS.message;
 		this.ts = System.currentTimeMillis();
 	}
 
 	public ResponseEntity(Errors errors) {
-		this.ecode = errors.code;
-		this.message = errors.label;
+		this.ecode = errors.getCode();
+		this.message = errors.getMessage();
 		this.ts = System.currentTimeMillis();
 	}
 
@@ -53,15 +54,9 @@ public class ResponseEntity<T2> implements Serializable {
 	}
 
 	public ResponseEntity(T2 t2) {
-		this.ecode = Errors.SUCCESS.code;
-		this.message = Errors.SUCCESS.label;
+		this.ecode = SystemErrors.SUCCESS.code;
+		this.message = SystemErrors.SUCCESS.message;
 		this.data = t2;
-		this.ts = System.currentTimeMillis();
-	}
-
-	public void setErrorType(String errorType) {
-		this.ecode = Errors.valueOf(errorType).code;
-		this.message = Errors.valueOf(errorType).label;
 		this.ts = System.currentTimeMillis();
 	}
 }

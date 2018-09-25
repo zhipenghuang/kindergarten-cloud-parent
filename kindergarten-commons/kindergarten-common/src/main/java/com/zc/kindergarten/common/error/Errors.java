@@ -1,33 +1,21 @@
 package com.zc.kindergarten.common.error;
 
 /**
- * @author hzp
+ * @author hzp 错误接口
  * @create 2018/9/19.
  */
-public enum Errors {
+public interface Errors {
 
-	SUCCESS(Integer.valueOf(0), "操作成功");
+	/**
+	 * 返回码
+	 */
+	int getCode();
 
-	public int code;
-	public String label;
+	/**
+	 * 错误信息
+	 */
+	String getMessage();
 
-	Errors(Integer code, String label) {
-		this.code = code.intValue();
-		this.label = label;
-	}
+	void setMessage(String msg);
 
-	public static String getMessage(int code) {
-		String result = "";
-		Errors[] var2 = values();
-		int var3 = var2.length;
-
-		for(int var4 = 0; var4 < var3; ++var4) {
-			Errors status = var2[var4];
-			if(status.code == code) {
-				result = status.label;
-			}
-		}
-
-		return result;
-	}
 }

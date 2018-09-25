@@ -1,7 +1,7 @@
 package com.zc.kindergarten.common.exception.auth;
 
 
-import com.zc.kindergarten.common.constant.CommonConstants;
+import com.zc.kindergarten.common.error.Errors;
 import com.zc.kindergarten.common.exception.BaseException;
 
 /**
@@ -9,7 +9,16 @@ import com.zc.kindergarten.common.exception.BaseException;
  * @create 2018/9/19.
  */
 public class UserInvalidException extends BaseException {
-    public UserInvalidException(String message) {
-        super(message, CommonConstants.EX_USER_PASS_INVALID_CODE);
+
+    public UserInvalidException() {
+        super();
+    }
+
+    public UserInvalidException(Errors error, Object data) {
+        super(error, data);
+    }
+
+    public UserInvalidException(Errors error) {
+        super(error);
     }
 }
