@@ -3,8 +3,7 @@ package com.zc.kindergarten.auth.client.runner;
 import com.zc.kindergarten.auth.client.config.ServiceAuthConfig;
 import com.zc.kindergarten.auth.client.config.UserAuthConfig;
 import com.zc.kindergarten.auth.client.feign.ServiceAuthFeign;
-import com.zc.kindergarten.common.msg.BaseResponse;
-import com.zc.kindergarten.common.msg.ObjectRestResponse;
+import com.zc.kindergarten.common.msg.ResponseEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -34,30 +33,30 @@ public class AuthClientRunner implements CommandLineRunner {
         log.info("初始化加载用户pubKey");
         try {
             refreshUserPubKey();
-        }catch(Exception e){
-            log.error("初始化加载用户pubKey失败,1分钟后自动重试!",e);
+        } catch (Exception e) {
+            log.error("初始化加载用户pubKey失败,1分钟后自动重试!", e);
         }
         log.info("初始化加载客户pubKey");
         try {
             refreshServicePubKey();
-        }catch(Exception e){
-            log.error("初始化加载客户pubKey失败,1分钟后自动重试!",e);
+        } catch (Exception e) {
+            log.error("初始化加载客户pubKey失败,1分钟后自动重试!", e);
         }
     }
+
     @Scheduled(cron = "0 0/1 * * * ?")
-    public void refreshUserPubKey(){
-        BaseResponse resp = serviceAuthFeign.getUserPublicKey(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
-        if (resp.getStatus() == HttpStatus.OK.value()) {
-            ObjectRestResponse<byte[]> userResponse = (ObjectRestResponse<byte[]>) resp;
-            this.userAuthConfig.setPubKeyByte(userResponse.getData());
+    public void refreshUserPubKey() {
+        ResponseEntity<byte[]> resp = serviceAuthFeign.getUserPublicKey(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
+        if (resp.getEcode() == 0) {
+            this.userAuthConfig.setPubKeyByte(resp.getData());
         }
     }
+
     @Scheduled(cron = "0 0/1 * * * ?")
-    public void refreshServicePubKey(){
-        BaseResponse resp = serviceAuthFeign.getServicePublicKey(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
-        if (resp.getStatus() == HttpStatus.OK.value()) {
-            ObjectRestResponse<byte[]> userResponse = (ObjectRestResponse<byte[]>) resp;
-            this.serviceAuthConfig.setPubKeyByte(userResponse.getData());
+    public void refreshServicePubKey() {
+        ResponseEntity<byte[]> resp = serviceAuthFeign.getServicePublicKey(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
+        if (resp.getEcode() == 0) {
+            this.serviceAuthConfig.setPubKeyByte(resp.getData());
         }
     }
 

@@ -26,7 +26,7 @@
 
         <dependency>
             <groupId>com.zc.kindergarten</groupId>
-            <artifactId>kindergarten-auth-client</artifactId>
+            <artifactId>kindergarten-auth-common</artifactId>
             <version>1.0</version>
         </dependency>
 

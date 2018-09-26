@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Data
 @EqualsAndHashCode
 @ToString
-public class ResponseEntity<T2> implements Serializable {
+public class ResponseEntity<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -33,7 +33,7 @@ public class ResponseEntity<T2> implements Serializable {
 	/**
 	 * 返回请求数据{json}对象
 	 */
-	private T2 data;
+	private T data;
 
 	public ResponseEntity() {
 		this.ecode = SystemErrors.SUCCESS.code;
@@ -53,10 +53,10 @@ public class ResponseEntity<T2> implements Serializable {
 		this.ts = System.currentTimeMillis();
 	}
 
-	public ResponseEntity(T2 t2) {
+	public ResponseEntity(T t) {
 		this.ecode = SystemErrors.SUCCESS.code;
 		this.message = SystemErrors.SUCCESS.message;
-		this.data = t2;
+		this.data = t;
 		this.ts = System.currentTimeMillis();
 	}
 }

@@ -4,8 +4,7 @@ package com.zc.kindergarten.auth.client.config;
 import com.zc.kindergarten.auth.client.feign.ServiceAuthFeign;
 import com.zc.kindergarten.common.error.AuthErrors;
 import com.zc.kindergarten.common.exception.auth.ClientTokenException;
-import com.zc.kindergarten.common.msg.BaseResponse;
-import com.zc.kindergarten.common.msg.ObjectRestResponse;
+import com.zc.kindergarten.common.msg.ResponseEntity;
 import com.zc.kindergarten.common.utils.jwt.IjwtInfo;
 import com.zc.kindergarten.common.utils.jwt.JwtHelper;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -26,60 +25,58 @@ import java.util.List;
 @Slf4j
 @EnableScheduling
 public class ServiceAuthUtil {
-	@Autowired
-	private ServiceAuthConfig serviceAuthConfig;
 
-	@Autowired
-	private ServiceAuthFeign serviceAuthFeign;
+    @Autowired
+    private ServiceAuthConfig serviceAuthConfig;
+    @Autowired
+    private ServiceAuthFeign serviceAuthFeign;
 
-	private List<String> allowedClient;
-	private String clientToken;
-
-
-	public IjwtInfo getInfoFromToken(String token) throws Exception {
-		try {
-			return JwtHelper.getInfoFromToken(token, serviceAuthConfig.getPubKeyByte());
-		} catch (ExpiredJwtException ex) {
-			throw new ClientTokenException(AuthErrors.CLIENT_TOKEN_EXPIRED);
-		} catch (SignatureException ex) {
-			throw new ClientTokenException(AuthErrors.CLIENT_TOKEN_SIGNATURE_ERROR);
-		} catch (IllegalArgumentException ex) {
-			throw new ClientTokenException(AuthErrors.CLIENT_TOKEN_IS_NULL_OR_EMPTY);
-		}
-	}
-
-	@Scheduled(cron = "0/30 * * * * ?")
-	public void refreshAllowedClient() {
-		log.debug("refresh allowedClient.....");
-		BaseResponse resp = serviceAuthFeign.getAllowedClient(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
-		if (resp.getStatus() == 200) {
-			ObjectRestResponse<List<String>> allowedClient = (ObjectRestResponse<List<String>>) resp;
-			this.allowedClient = allowedClient.getData();
-		}
-	}
-
-	@Scheduled(cron = "0 0/10 * * * ?")
-	public void refreshClientToken() {
-		log.debug("refresh client token.....");
-		BaseResponse resp = serviceAuthFeign.getAccessToken(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
-		if (resp.getStatus() == 200) {
-			ObjectRestResponse<String> clientToken = (ObjectRestResponse<String>) resp;
-			this.clientToken = clientToken.getData();
-		}
-	}
+    private List<String> allowedClient;
+    private String clientToken;
 
 
-	public String getClientToken() {
-		if (this.clientToken == null) {
-			this.refreshClientToken();
-		}
-		return clientToken;
-	}
+    public IjwtInfo getInfoFromToken(String token) throws Exception {
+        try {
+            return JwtHelper.getInfoFromToken(token, serviceAuthConfig.getPubKeyByte());
+        } catch (ExpiredJwtException ex) {
+            throw new ClientTokenException(AuthErrors.CLIENT_TOKEN_EXPIRED);
+        } catch (SignatureException ex) {
+            throw new ClientTokenException(AuthErrors.CLIENT_TOKEN_SIGNATURE_ERROR);
+        } catch (IllegalArgumentException ex) {
+            throw new ClientTokenException(AuthErrors.CLIENT_TOKEN_IS_NULL_OR_EMPTY);
+        }
+    }
 
-	public List<String> getAllowedClient() {
-		if (this.allowedClient == null) {
-			this.refreshAllowedClient();
-		}
-		return allowedClient;
-	}
+    @Scheduled(cron = "0/30 * * * * ?")
+    public void refreshAllowedClient() {
+        log.debug("refresh allowedClient.....");
+        ResponseEntity<List<String>> resp = serviceAuthFeign.getAllowedClient(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
+        if (resp.getEcode() == 0) {
+            this.allowedClient = resp.getData();
+        }
+    }
+
+    @Scheduled(cron = "0 0/10 * * * ?")
+    public void refreshClientToken() {
+        log.debug("refresh client token.....");
+        ResponseEntity<String> resp = serviceAuthFeign.getAccessToken(serviceAuthConfig.getClientId(), serviceAuthConfig.getClientSecret());
+        if (resp.getEcode() == 0) {
+            this.clientToken = resp.getData();
+        }
+    }
+
+
+    public String getClientToken() {
+        if (this.clientToken == null) {
+            this.refreshClientToken();
+        }
+        return clientToken;
+    }
+
+    public List<String> getAllowedClient() {
+        if (this.allowedClient == null) {
+            this.refreshAllowedClient();
+        }
+        return allowedClient;
+    }
 }

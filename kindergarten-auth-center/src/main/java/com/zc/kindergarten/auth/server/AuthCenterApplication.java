@@ -1,8 +1,10 @@
 package com.zc.kindergarten.auth.server;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author hzp
@@ -10,9 +12,11 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @EnableEurekaClient
 @SpringBootApplication
+@EnableFeignClients({"com.zc.kindergarten.auth.server.feign"})
+@MapperScan("com.zc.kindergarten.auth.server.mapper")
 public class AuthCenterApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AuthCenterApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AuthCenterApplication.class, args);
+    }
 }

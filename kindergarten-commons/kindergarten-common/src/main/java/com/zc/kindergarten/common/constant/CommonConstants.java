@@ -1,8 +1,7 @@
 package com.zc.kindergarten.common.constant;
 
 /**
- * @author hzp
- * @create 2018/9/19.
+ * Created by ace on 2017/8/29.
  */
 public class CommonConstants {
     public final static String RESOURCE_TYPE_MENU = "menu";

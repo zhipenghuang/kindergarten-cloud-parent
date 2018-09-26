@@ -99,7 +99,7 @@ public class RequestPrint {
 		// 获取请求地址
 		requestPath = request.getRequestURL().toString();
 		// 执行完方法的返回值：调用proceed()方法，就会触发切入点方法执行
-		outputParamMap = new HashMap<String, Object>();
+		outputParamMap = new HashMap<>(16);
 		// result的值就是被拦截方法的返回值
 		Object result = pjp.proceed();
 		outputParamMap.put("result", result);

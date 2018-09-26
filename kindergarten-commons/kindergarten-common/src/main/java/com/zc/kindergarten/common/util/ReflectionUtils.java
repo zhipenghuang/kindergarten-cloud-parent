@@ -14,7 +14,6 @@ import java.lang.reflect.*;
  * @author hzp
  * @version 2018-9-21
  */
-@SuppressWarnings("rawtypes")
 public class ReflectionUtils {
 	
 	private static final String SETTER_PREFIX = "set";
@@ -309,7 +308,7 @@ public class ReflectionUtils {
 	}
 	
 	/**
-	 * 将反射时的checked exception转换为unchecked exception.
+	 * 将反射时的checked exception转换为unchecked handler.
 	 */
 	public static RuntimeException convertReflectionExceptionToUnchecked(Exception e) {
 		if (e instanceof IllegalAccessException || e instanceof IllegalArgumentException
