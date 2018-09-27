@@ -102,4 +102,10 @@ public class MenuServiceImpl implements MenuService {
 		return menuList;
 	}
 
+	@Override
+	public List<Menu> selectAllMenus() {
+		List<Menu> menuList = menuMapper.selectAll();
+		return menuList;
+	}
+
 }

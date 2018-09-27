@@ -21,4 +21,7 @@ public interface MenuService {
 	List<MenuTree> getUserAuthorityMenuByUserIdAndParentId(Long userId, Long parentId);
 
 	List<Menu> getUserAuthoritySystemByUserId(Long userId);
+
+	List<Menu> selectAllMenus();
+
 }

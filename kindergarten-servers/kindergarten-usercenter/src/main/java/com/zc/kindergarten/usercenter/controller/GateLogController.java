@@ -1,7 +1,15 @@
 package com.zc.kindergarten.usercenter.controller;
 
+import com.zc.kindergarten.common.vo.LogInfo;
+import com.zc.kindergarten.usercenter.entity.GateLog;
+import com.zc.kindergarten.usercenter.service.GateLogService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * ${DESCRIPTION}
@@ -12,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("gateLog")
 public class GateLogController {
+	@Autowired
+	private GateLogService gateLogService;
+
+
 //    @RequestMapping(value = "/page",method = RequestMethod.GET)
 //    @ResponseBody
 //    public TableResultResponse<GateLog> page(@RequestParam(defaultValue = "10") int limit, @RequestParam(defaultValue = "1")int offset, String name){
@@ -23,4 +35,11 @@ public class GateLogController {
 //        PageHelper.startPage(offset, limit);
 //        return new TableResultResponse<GateLog>(count,baseBiz.selectByExample(example));
 //    }
+
+	@RequestMapping(value="/log/save",method = RequestMethod.POST)
+	public @ResponseBody void saveLog(@RequestBody LogInfo info){
+		GateLog log = new GateLog();
+		BeanUtils.copyProperties(info,log);
+		gateLogService.insertSelective(info);
+	}
 }
