@@ -1,4 +1,4 @@
-package com.zc.kindergarten.auth.server.vo;
+package com.zc.kindergarten.common.vo;
 
 import com.zc.kindergarten.common.vo.PermissionInfo;
 import lombok.Data;
