@@ -12,7 +12,7 @@ spring:
     max-active: 20
   datasource:
     druid:
-      url: jdbc:mysql://192.168.153.129:3306/ag_auth_v1?useUnicode=true&characterEncoding=UTF8&useSSL=false
+      url: jdbc:mysql://192.168.153.129:3306/usercenter?useUnicode=true&characterEncoding=UTF8&useSSL=false
       username: root
       password: 172594
       initial-size: 1
@@ -102,17 +102,14 @@ eureka:
     serviceUrl:
       defaultZone: http://zc:zc@${eureka.host:discovery1}:${eureka.port:8063}/eureka/,http://zc:zc@${eureka.host2:discovery2}:${eureka.port2:8064}/eureka/
 
-jwt:
-  token-header: Authorization
-  expire: 14400
-  rsa-secret: xx1WET12^%3^(WE45
-
-client:
-  id: kindergarten-auth-center
-  secret: 123456
-  token-header: x-client-token
-  expire: 14400
-  rsa-secret: x2318^^(*WRYQWR(QW&T
+auth:
+  serviceId: kindergarten-auth-center
+  user:
+    token-header: Authorization
+  client:
+    id: kindergarten-usercenter
+    secret: 123456
+    token-header: x-client-token
 
 logging:
   level:

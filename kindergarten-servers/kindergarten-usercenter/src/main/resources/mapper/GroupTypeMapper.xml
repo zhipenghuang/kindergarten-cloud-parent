@@ -3,7 +3,7 @@
 <mapper namespace="com.zc.kindergarten.usercenter.mapper.GroupTypeMapper">
 
   <resultMap id="BaseResultMap" type="com.zc.kindergarten.usercenter.entity.GroupType">
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="description" jdbcType="VARCHAR" property="description" />
