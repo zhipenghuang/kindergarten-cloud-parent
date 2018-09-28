@@ -13,7 +13,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableEurekaClient
 @SpringBootApplication
 @EnableFeignClients({"com.zc.kindergarten.auth.server.feign"})
-@MapperScan("com.zc.kindergarten.auth.server.mapper")
 public class AuthCenterApplication {
 
     public static void main(String[] args) {

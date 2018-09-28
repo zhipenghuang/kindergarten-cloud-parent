@@ -44,6 +44,8 @@ public class AuthClientServiceImpl implements AuthClientService {
 
     private AuthClient getClient(String clientId, String secret) {
         AuthClient client = new AuthClient();
+	    client.setCreatedAt(null);
+	    client.setUpdatedAt(null);
         client.setCode(clientId);
         client = authClientMapper.selectOne(client);
         if (client == null || !client.getSecret().equals(secret)) {
