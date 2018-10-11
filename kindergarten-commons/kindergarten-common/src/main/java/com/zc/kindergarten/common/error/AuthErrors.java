@@ -24,15 +24,15 @@ public enum AuthErrors implements Errors {
     /**
      * 用户token过期
      */
-    USER_TOKEN_EXPIRED(5005, "token已过期"),
+    USER_TOKEN_EXPIRED(5005, "用户token已过期"),
     /**
      * 用户token签名错误
      */
-    USER_TOKEN_SIGNATURE_ERROR(5006, "token签名错误"),
+    USER_TOKEN_SIGNATURE_ERROR(5006, "用户token签名错误"),
     /**
      * 用户token为空或空字符串
      */
-    USER_TOKEN_IS_NULL_OR_EMPTY(5007, "token为空"),
+    USER_TOKEN_IS_NULL_OR_EMPTY(5007, "用户token为空"),
     /**
      * 用户不存在或账户密码错误
      */

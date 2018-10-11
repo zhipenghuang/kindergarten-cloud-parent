@@ -1,5 +1,6 @@
 package com.zc.kindergarten.usercenter.controller;
 
+import com.zc.kindergarten.auth.client.annotation.IgnoreUserToken;
 import com.zc.kindergarten.common.msg.ResponseEntity;
 import com.zc.kindergarten.common.vo.FrontUser;
 import com.zc.kindergarten.common.vo.PermissionInfo;
@@ -62,6 +63,7 @@ public class UserController {
 		return new ResponseEntity<>(permissionInfos);
 	}
 
+	@IgnoreUserToken
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<UserInfo> validate(@RequestBody Map<String,String> body){
 		UserInfo userInfo = userService.validate(body.get("username"),body.get("password"));

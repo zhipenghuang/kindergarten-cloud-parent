@@ -26,13 +26,13 @@
     </resultMap>
 
     <select id="selectMemberByGroupId" resultMap="BaseResultMap">
-        select u.* from base_user u
-        left join base_group_member gm
+        select u.* from user u
+        left join group_member gm
         on gm.user_id = u.id where gm.group_id = #{groupId}
     </select>
     <select id="selectLeaderByGroupId" resultMap="BaseResultMap">
-        select u.* from base_user u
-        left join base_group_leader gm
+        select u.* from user u
+        left join group_leader gm
         on gm.user_id = u.id where gm.group_id = #{groupId}
     </select>
 </mapper>

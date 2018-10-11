@@ -2,6 +2,7 @@ package com.zc.kindergarten.auth.server.feign;
 
 import com.zc.kindergarten.auth.server.config.FeignConfiguration;
 import com.zc.kindergarten.auth.server.vo.request.JwtAuthenticationRequest;
+import com.zc.kindergarten.common.msg.ResponseEntity;
 import com.zc.kindergarten.common.vo.UserInfo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,5 +26,5 @@ public interface IUserService {
      * @return UserInfo
      */
     @RequestMapping(value = "/user/validate", method = RequestMethod.POST)
-    UserInfo validate(@RequestBody JwtAuthenticationRequest authenticationRequest);
+    ResponseEntity<UserInfo> validate(@RequestBody JwtAuthenticationRequest authenticationRequest);
 }

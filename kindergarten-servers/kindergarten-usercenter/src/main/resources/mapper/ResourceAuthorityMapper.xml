@@ -18,6 +18,6 @@
     </resultMap>
 
     <delete id="deleteByAuthorityIdAndResourceType">
-        delete from base_resource_authority where authority_id = #{authorityId} and resource_type = #{resourceType}
+        delete from resource_authority where authority_id = #{authorityId} and resource_type = #{resourceType}
     </delete>
 </mapper>

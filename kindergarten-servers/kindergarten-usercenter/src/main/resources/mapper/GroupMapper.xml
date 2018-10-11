@@ -23,13 +23,13 @@
   </resultMap>
 
   <delete id="deleteGroupMembersById">
-      delete from base_group_member where group_id = #{groupId}
+      delete from group_member where group_id = #{groupId}
   </delete>
   <delete id="deleteGroupLeadersById">
-    delete from base_group_leader where group_id = #{groupId}
+    delete from group_leader where group_id = #{groupId}
   </delete>
   <insert id="insertGroupMembersById">
-    insert into base_group_member (
+    insert into group_member (
        group_id,user_id
     )
     values(
@@ -37,7 +37,7 @@
     )
   </insert>
   <insert id="insertGroupLeadersById">
-    insert into base_group_leader (
+    insert into group_leader (
        group_id,user_id
     )
     values(
