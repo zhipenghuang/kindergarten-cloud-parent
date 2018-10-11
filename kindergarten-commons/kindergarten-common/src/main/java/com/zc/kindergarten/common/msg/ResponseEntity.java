@@ -1,5 +1,6 @@
 package com.zc.kindergarten.common.msg;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.zc.kindergarten.common.error.Errors;
 import com.zc.kindergarten.common.error.SystemErrors;
 import lombok.Data;
@@ -19,20 +20,24 @@ public class ResponseEntity<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	/**
+	 * 返回数据编码，0成功 其他为失败
+	 */
+	@JSONField(ordinal = 1)
+	private int ecode = 0;
+	/**
 	 * 请求结果信息提示
 	 */
+	@JSONField(ordinal = 2)
 	private String message;
 	/**
 	 * 时间戳
 	 */
+	@JSONField(ordinal = 3)
 	private long ts;
-	/**
-	 * 返回数据编码，0成功 其他为失败
-	 */
-	private int ecode = 0;
 	/**
 	 * 返回请求数据{json}对象
 	 */
+	@JSONField(ordinal = 4)
 	private T data;
 
 	public ResponseEntity() {

@@ -6,6 +6,7 @@ import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
+@org.apache.ibatis.annotations.Mapper
 public interface MenuMapper extends Mapper<Menu> {
 
 	List<Menu> selectMenuByAuthorityId(@Param("authorityId") String authorityId, @Param("authorityType") String authorityType);

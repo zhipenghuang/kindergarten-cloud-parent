@@ -8,8 +8,10 @@ import java.util.Date;
  * @create 2018/9/19.
  */
 @Data
-public class AuthClient extends BaseEntity {
+public class AuthClient {
 
+	protected Long id;
+	
 	private String code;
 
 	private String secret;

@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	@ResponseBody
 	public ResponseEntity handlerRequstParams(MethodArgumentTypeMismatchException e, HttpServletRequest request) {
-		log.error("\n发生的异常：方法参数类型绑定异常", e);
+		log.error("方法参数类型绑定异常", e);
 		return new ResponseEntity(SystemErrors.METHOD_ARGUMENT_TYPE_MISMATCH_EXCEPTION);
 	}
 
@@ -53,7 +53,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(ServletException.class)
 	@ResponseBody
 	public ResponseEntity ServletException(ServletException e, HttpServletRequest request) {
-		log.error("\n发生的异常：请求处理异常", e);
+		log.error("请求处理异常", e);
 		return new ResponseEntity(SystemErrors.SERVLET_EXCEPTION);
 	}
 
@@ -66,7 +66,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(SysException.class)
 	@ResponseBody
 	public ResponseEntity SysException(SysException e, HttpServletRequest request) {
-		log.error("\n发生的异常：自定义系统异常", e);
+		log.error("自定义系统异常", e);
 		return new ResponseEntity(e.getError().getCode(), e.getError().getMessage());
 	}
 
@@ -79,7 +79,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(RequestTimeOutException.class)
 	@ResponseBody
 	public ResponseEntity RequestTimeOutException(RequestTimeOutException e, HttpServletRequest request) {
-		log.error("\n发生的异常：请求超时，异常原因：" + e.getError().getMessage() + (e.getData() == null ? "" : (",data=" + e.getData())), e);
+		log.error("请求超时" + e.getError().getMessage() + (e.getData() == null ? "" : (",data=" + e.getData())), e);
 		return new ResponseEntity(e.getError().getCode(), e.getError().getMessage());
 	}
 
@@ -92,7 +92,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(ParamsException.class)
 	@ResponseBody
 	public ResponseEntity ParamsException(ParamsException e, HttpServletRequest request) {
-		log.error("\n发生的异常：参数错误", e);
+		log.error("参数错误", e);
 		return new ResponseEntity(e.getError().getCode(), e.getError().getMessage());
 	}
 
@@ -107,7 +107,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(BaseException.class)
 	@ResponseBody
 	public ResponseEntity BaseException(HttpServletRequest request, BaseException e) {
-		log.error("\n发生的异常：BaseException", e);
+		log.error("(⊙o⊙)…呃豁，报错了", e);
 		return new ResponseEntity(e.getError().getCode(), e.getError().getMessage());
 	}
 
@@ -121,7 +121,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
 	public ResponseEntity handleGlobal(HttpServletRequest request, Exception e) {
-		log.error("\n发生的异常：Exception", e);
+		log.error("(⊙o⊙)…呃豁，报错了", e);
 		return new ResponseEntity(SystemErrors.SYSTEM_ERROR);
 	}
 
@@ -136,7 +136,7 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	public ResponseEntity MethodArgumentNotValidHandler(MethodArgumentNotValidException exception, HttpServletRequest request) throws Exception {
 		BindingResult result = exception.getBindingResult();
-		log.error("\n发生的异常：请求参数格式异常", exception);
+		log.error("请求参数格式异常", exception);
 		return bindParamValid(result);
 	}
 
@@ -151,7 +151,7 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	public ResponseEntity BindException(BindException exception, HttpServletRequest request) throws Exception {
 		BindingResult result = exception.getBindingResult();
-		log.error("\n发生的异常：请求参数绑定异常", exception);
+		log.error("请求参数绑定异常", exception);
 		return bindParamValid(result);
 	}
 

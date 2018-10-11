@@ -1,25 +1,26 @@
 package com.zc.kindergarten.auth.server.entity;
 
-import com.zc.kindergarten.common.entity.BaseEntity;
 import lombok.Data;
-import java.util.Date;
+
 /**
  * @author hzp
  * @create 2018/9/19.
  */
 @Data
-public class ClientAndService extends BaseEntity {
+public class ClientAndService {
 
-    private String serviceId;
+	protected Long id;
 
-    private String clientId;
+	private String serviceId;
 
-    private String description;
+	private String clientId;
 
-    private String crtUser;
+	private String description;
 
-    private String crtName;
+	private String crtUser;
 
-    private String crtHost;
+	private String crtName;
+
+	private String crtHost;
 
 }

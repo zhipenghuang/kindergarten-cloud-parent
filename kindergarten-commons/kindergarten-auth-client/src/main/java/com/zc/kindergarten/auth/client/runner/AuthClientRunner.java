@@ -36,11 +36,11 @@ public class AuthClientRunner implements CommandLineRunner {
         } catch (Exception e) {
             log.error("初始化加载用户pubKey失败,1分钟后自动重试!", e);
         }
-        log.info("初始化加载客户pubKey");
+        log.info("初始化加载服务pubKey");
         try {
             refreshServicePubKey();
         } catch (Exception e) {
-            log.error("初始化加载客户pubKey失败,1分钟后自动重试!", e);
+            log.error("初始化加载服务pubKey失败,1分钟后自动重试!", e);
         }
     }
 

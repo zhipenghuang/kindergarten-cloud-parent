@@ -24,6 +24,6 @@ public interface IUserService {
      * @param authenticationRequest
      * @return UserInfo
      */
-    @RequestMapping(value = "/api/user/validate", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/validate", method = RequestMethod.POST)
     UserInfo validate(@RequestBody JwtAuthenticationRequest authenticationRequest);
 }

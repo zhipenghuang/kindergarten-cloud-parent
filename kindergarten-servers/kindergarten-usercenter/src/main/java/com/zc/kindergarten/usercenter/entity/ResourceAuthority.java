@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class ResourceAuthority extends BaseEntity {
+public class ResourceAuthority {
     private Long id;
 
     private String authorityId;

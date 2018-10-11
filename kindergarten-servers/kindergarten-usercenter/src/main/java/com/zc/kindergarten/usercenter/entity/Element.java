@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class Element extends BaseEntity {
+public class Element {
 
 	private Long id;
 

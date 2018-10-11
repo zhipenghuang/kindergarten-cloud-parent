@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class GroupType extends BaseEntity {
+public class GroupType {
     private Long id;
 
     private String code;

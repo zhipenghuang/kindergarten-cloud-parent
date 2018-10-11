@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class Menu extends BaseEntity {
+public class Menu {
     private Long id;
 
     private String code;

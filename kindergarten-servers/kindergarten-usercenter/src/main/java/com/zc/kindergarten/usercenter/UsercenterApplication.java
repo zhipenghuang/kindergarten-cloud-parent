@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableScheduling
 @EnableAceAuthClient
 @EnableTransactionManagement
-@MapperScan("com.zc.kindergarten.usercenter.mapper")
 public class UsercenterApplication {
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(UsercenterApplication.class).web(true).run(args);    }

@@ -141,7 +141,7 @@ public class RsaKeyHelper {
         KeyPair keyPair = keyPairGenerator.genKeyPair();
         byte[] publicKeyBytes = keyPair.getPublic().getEncoded();
         byte[] privateKeyBytes = keyPair.getPrivate().getEncoded();
-        Map<String, byte[]> map = new HashMap<String, byte[]>();
+        Map<String, byte[]> map = new HashMap<>();
         map.put("pub", publicKeyBytes);
         map.put("pri", privateKeyBytes);
         return map;

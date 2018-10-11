@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class GateLog extends BaseEntity {
+public class GateLog {
 
 	private Long id;
 

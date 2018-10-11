@@ -48,7 +48,6 @@ public class AuthServerRunner implements CommandLineRunner {
             keyConfiguration.setServicePubKey(keyMap.get("pub"));
             redisTemplate.opsForValue().set(REDIS_SERVICE_PRI_KEY, RsaKeyHelper.toHexString(keyMap.get("pri")));
             redisTemplate.opsForValue().set(REDIS_SERVICE_PUB_KEY, RsaKeyHelper.toHexString(keyMap.get("pub")));
-
         }
     }
 }

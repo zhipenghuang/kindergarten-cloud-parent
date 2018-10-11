@@ -1,6 +1,6 @@
 /.idea
-*/target
-*/**/static
-*/**/templates
+/**/target
+/**/static
+/**/templates
 *.md
 *.iml

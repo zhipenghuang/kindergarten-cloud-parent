@@ -56,13 +56,13 @@ public class UserController {
     	return new ResponseEntity<>(permissionInfos);
 	}
 
-	@RequestMapping(value = "/user/un/{username}/permissions", method = RequestMethod.GET)
+	@RequestMapping(value = "/un/{username}/permissions", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<List<PermissionInfo>> getPermissionByUsername(@PathVariable("username") String username){
 		List<PermissionInfo> permissionInfos = userService.getPermissionByUsername(username);
 		return new ResponseEntity<>(permissionInfos);
 	}
 
-	@RequestMapping(value = "/user/validate", method = RequestMethod.POST)
+	@RequestMapping(value = "/validate", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<UserInfo> validate(@RequestBody Map<String,String> body){
 		UserInfo userInfo = userService.validate(body.get("username"),body.get("password"));
 		return new ResponseEntity<>(userInfo);
