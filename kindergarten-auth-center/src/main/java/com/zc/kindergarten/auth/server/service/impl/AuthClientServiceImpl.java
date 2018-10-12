@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -24,25 +25,26 @@ import java.util.List;
  */
 @Service
 @Slf4j
+@EnableScheduling
 public class AuthClientServiceImpl implements AuthClientService {
-	@Autowired
-	private AuthClientMapper authClientMapper;
-	@Autowired
-	private ClientTokenUtil clientTokenUtil;
-	@Autowired
-	private DiscoveryClient discovery;
-	private ApplicationContext context;
+    @Autowired
+    private AuthClientMapper authClientMapper;
+    @Autowired
+    private ClientTokenUtil clientTokenUtil;
+    @Autowired
+    private DiscoveryClient discovery;
+    private ApplicationContext context;
 
-	@Autowired
-	public AuthClientServiceImpl(ApplicationContext context) {
-		this.context = context;
-	}
+    @Autowired
+    public AuthClientServiceImpl(ApplicationContext context) {
+        this.context = context;
+    }
 
-	@Override
-	public String apply(String clientId, String secret) throws Exception {
-		AuthClient client = getClient(clientId, secret);
-		return clientTokenUtil.generateToken(new ClientInfo(client.getCode(), client.getName(), client.getId().toString()));
-	}
+    @Override
+    public String apply(String clientId, String secret) throws Exception {
+        AuthClient client = getClient(clientId, secret);
+        return clientTokenUtil.generateToken(new ClientInfo(client.getCode(), client.getName(), client.getId().toString()));
+    }
 
 	private AuthClient getClient(String clientId, String secret) {
 		AuthClient client = new AuthClient();

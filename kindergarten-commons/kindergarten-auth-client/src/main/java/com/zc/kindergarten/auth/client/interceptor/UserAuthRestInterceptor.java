@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
  * @create 2018/9/19.
  */
 public class UserAuthRestInterceptor extends HandlerInterceptorAdapter {
-    private Logger logger = LoggerFactory.getLogger(UserAuthRestInterceptor.class);
 
     @Autowired
     private UserAuthUtil userAuthUtil;

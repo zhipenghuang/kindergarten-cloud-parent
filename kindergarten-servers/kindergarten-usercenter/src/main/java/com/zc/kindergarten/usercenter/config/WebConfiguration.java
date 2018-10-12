@@ -13,9 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- *
- * @author ace
- * @date 2017/9/8
+ * @author hzp
+ * @date 2018/10/11
  */
 @Configuration("admimWebConfig")
 @Primary
@@ -28,7 +27,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(getServiceAuthRestInterceptor()).
-                addPathPatterns(getIncludePathPatterns()).addPathPatterns("/api/user/validate");
+                addPathPatterns(getIncludePathPatterns()).addPathPatterns("/user/validate");
         registry.addInterceptor(getUserAuthRestInterceptor()).
                 addPathPatterns(getIncludePathPatterns());
     }
@@ -45,6 +44,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     /**
      * 需要用户和服务认证判断的路径
+     *
      * @return
      */
     private ArrayList<String> getIncludePathPatterns() {
@@ -55,9 +55,9 @@ public class WebConfiguration implements WebMvcConfigurer {
                 "/group/**",
                 "/groupType/**",
                 "/menu/**",
-                "/user/**",
-                "/api/permissions",
-                "/api/user/un/**"
+                "/user/front/**",
+                "/user/permissions",
+                "/user/un/**"
         };
         Collections.addAll(list, urls);
         return list;

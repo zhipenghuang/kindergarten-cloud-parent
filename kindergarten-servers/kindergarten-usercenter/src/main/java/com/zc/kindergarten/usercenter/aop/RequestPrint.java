@@ -18,10 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
-/**
- * @author hzp
- * @create 2018/9/19.
- */
+
 @Aspect
 @Slf4j
 @Order(value = 1)

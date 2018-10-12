@@ -1,9 +1,11 @@
 package com.zc.kindergarten.common.constant;
 
 /**
- * Created by ace on 2017/8/29.
+ * @author hzp
+ * @create 2018/9/19.
  */
 public class CommonConstants {
+
     public final static String RESOURCE_TYPE_MENU = "menu";
     public final static String RESOURCE_TYPE_BTN = "button";
     // 用户token异常
