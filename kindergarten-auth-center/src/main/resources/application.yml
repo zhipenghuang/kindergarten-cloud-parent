@@ -4,17 +4,17 @@ spring:
   application:
     name: kindergarten-auth-center
   redis:
-    database: 2
-    host: ${REDIS_HOST:192.168.153.129}
+    database: 10
+    host: ${REDIS_HOST:192.168.0.108}
     port: ${REDIS_PORT:6379}
-    password: 172594
+    password: zcadmin
     pool:
     max-active: 20
   datasource:
     druid:
-      url: jdbc:mysql://192.168.153.129:3306/authcenter?useUnicode=true&characterEncoding=UTF8&useSSL=false
+      url: jdbc:mysql://localhost:3306/zc_auth?useUnicode=true&characterEncoding=UTF8
       username: root
-      password: 172594
+      password: root
       initial-size: 1
       max-active: 20
       min-idle: 1
@@ -48,8 +48,8 @@ spring:
       aop-patterns: com.zc.kindergarten.auth.server.service.*
 
   rabbitmq:
-    host: ${RABBIT_MQ_HOST:192.168.153.129}
-    port:  ${RABBIT_MQ_PORT:5672}
+    host: ${RABBIT_MQ_HOST:192.168.0.108}
+    port:  ${RABBIT_MQ_PORT:5673}
     username: guest
     password: guest
   sleuth:
@@ -115,7 +115,6 @@ client:
 
 logging:
   level:
-    #        tk.mybatis: DEBUG
     com.zc.kindergarten.auth.server: DEBUG
 
 management:

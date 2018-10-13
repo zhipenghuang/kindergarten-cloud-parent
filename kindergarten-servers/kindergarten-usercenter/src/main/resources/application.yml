@@ -2,19 +2,19 @@ server:
   port: 9778 #启动端口
 spring:
   application:
-    name: kindergarten-auth-center
+    name: kindergarten-usercenter
   redis:
-    database: 2
-    host: ${REDIS_HOST:192.168.153.129}
+    database: 3
+    host: ${REDIS_HOST:192.168.0.108}
     port: ${REDIS_PORT:6379}
-    password: 172594
+    password: zcadmin
     pool:
     max-active: 20
   datasource:
     druid:
-      url: jdbc:mysql://192.168.153.129:3306/usercenter?useUnicode=true&characterEncoding=UTF8&useSSL=false
+      url: jdbc:mysql://localhost:3306/zc_usercenter?useUnicode=true&characterEncoding=UTF8&useSSL=false
       username: root
-      password: 172594
+      password: root
       initial-size: 1
       max-active: 20
       min-idle: 1
@@ -48,8 +48,8 @@ spring:
       aop-patterns: com.zc.kindergarten.auth.server.service.*
 
   rabbitmq:
-    host: ${RABBIT_MQ_HOST:192.168.153.129}
-    port:  ${RABBIT_MQ_PORT:5672}
+    host: ${RABBIT_MQ_HOST:192.168.0.108}
+    port:  ${RABBIT_MQ_PORT:5673}
     username: guest
     password: guest
   sleuth:
@@ -79,9 +79,9 @@ ribbon:
 hystrix:
   threadpool:
     default:
-      coreSize: 1000 ##并发执行的最大线程数，默认10
-      maxQueueSize: 1000 ##BlockingQueue的最大队列数
-      queueSizeRejectionThreshold: 500 ##即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+      coreSize: 1000 #并发执行的最大线程数，默认10
+      maxQueueSize: 1000 #BlockingQueue的最大队列数
+      queueSizeRejectionThreshold: 500 #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
   command:
     default:
       execution:

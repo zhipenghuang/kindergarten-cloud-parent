@@ -1,3 +1,6 @@
+server:
+  port: 8765
+
 spring:
   application:
     name: kindergarten-gateway
@@ -22,23 +25,20 @@ spring:
         enabled: true
       routes:
       # =====================================
-      - id: ace-auth
-        uri: lb://ace-auth
+      - id: kindergarten-auth-center
+        uri: lb://kindergarten-auth-center
         order: 8000
         predicates:
         - Path=/api/auth/**
         filters:
         - StripPrefix=2
-      - id: ace-admin
-        uri: lb://ace-admin
+      - id: kindergarten-usercenter
+        uri: lb://kindergarten-usercenter
         order: 8001
         predicates:
-        - Path=/api/admin/**
+        - Path=/api/usercenter/**
         filters:
         - StripPrefix=2
-
-server:
-  port: 8765
 
 eureka:
   instance:
@@ -76,3 +76,16 @@ management:
     web:
       exposure:
         include: '*'
+
+gate:
+  ignore:
+    startWith: /auth/jwt
+
+auth:
+  serviceId: kindergarten-auth-center
+  user:
+    token-header: Authorization
+  client:
+    token-header: x-client-token
+    id: kindergarten-gateway  #不填则默认读取spring.application.name
+    secret: 123456

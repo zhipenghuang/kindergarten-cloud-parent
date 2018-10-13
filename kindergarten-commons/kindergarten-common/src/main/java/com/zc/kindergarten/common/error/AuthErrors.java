@@ -40,7 +40,11 @@ public enum AuthErrors implements Errors {
     /**
      * client找不到或者client秘钥错误
      */
-    CLIENT_NOT_FOUND_OR_CLIENT_SECRET_IS_ERROR(5008, "client找不到或者client秘钥错误");
+    CLIENT_NOT_FOUND_OR_CLIENT_SECRET_IS_ERROR(5008, "client找不到或者client秘钥错误"),
+    /**
+     * 该用户没有权限
+     */
+    USER_FORBIDDEN_DOES_NOT_HAS_PERMMISION(5009, "该用户没有权限");
 
     public int code;
     public String message;
@@ -51,7 +55,7 @@ public enum AuthErrors implements Errors {
     }
 
     public static String getMsg(int code) {
-        for (SystemErrors errorCode : SystemErrors.values()) {
+        for (AuthErrors errorCode : AuthErrors.values()) {
             if (code == errorCode.getCode()) {
                 return errorCode.getMessage();
             }
