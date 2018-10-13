@@ -14,6 +14,7 @@
         <module>kindergarten-servers</module>
         <module>kindergarten-gateway</module>
         <module>kindergarten-auth-center</module>
+        <module>kindergarten-monitor</module>
     </modules>
 
     <parent>
