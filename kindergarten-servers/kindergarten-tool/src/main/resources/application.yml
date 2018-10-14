@@ -1,0 +1,67 @@
+server:
+    port: 9992
+
+spring:
+    application:
+        name: kindergarten-tool
+    rabbitmq:
+      host: ${RABBIT_MQ_HOST:192.168.153.129}
+      port:  ${RABBIT_MQ_PORT:5672}
+      username: guest
+      password: guest
+    sleuth:
+        sampler:
+            percentage: 1
+
+search:
+  lucence:
+    path: ./lucence/file
+
+# 具体看类:CloudStorageConfig
+oss:
+  type: 1 # 类型 1：七牛  2：阿里云  3：腾讯云
+  qiniuDomain: http://xxxxx.com
+  qiniuPrefix: oss
+  qiniuAccessKey: xxxxxx
+  qiniuSecretKey: xxxxx
+  qiniuBucketName: xxxBucket
+
+eureka:
+  instance:
+    statusPageUrlPath: /actuator/info
+    healthCheckUrlPath: /actuator/health
+    home-page-url-path: /
+    prefer-ip-address: true #注册中心优先显示ip(true开启)
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} #该配置项作用:注册中心显示该服务运行的服务器ip和端口
+    enable-self-preservation: false #关闭自我保护
+    eviction-interval-timer-in-ms: 10*1000 #10s清理无效服务
+  client:
+    serviceUrl:
+      defaultZone: http://zc:zc@${eureka.host:discovery1}:${eureka.port:8063}/eureka/,http://zc:zc@${eureka.host2:discovery2}:${eureka.port2:8064}/eureka/
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 120000
+  ConnectTimeout: 120000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+  OkToRetryOnAllOperations: false
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 1000
+      maxQueueSize: 1000
+      queueSizeRejectionThreshold: 500
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000
+
+logging:
+  level:
+    com.zc.kindergarten.tool: DEBUG

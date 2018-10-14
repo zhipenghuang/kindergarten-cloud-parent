@@ -1,6 +1,5 @@
 package com.zc.kindergarten.usercenter.entity;
 
-import com.zc.kindergarten.common.entity.BaseEntity;
 import lombok.Data;
 
 import java.util.Date;

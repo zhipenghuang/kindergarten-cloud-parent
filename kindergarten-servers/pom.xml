@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>kindergarten-usercenter</module>
+        <module>kindergarten-tool</module>
     </modules>
 
 </project>

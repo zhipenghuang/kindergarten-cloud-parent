@@ -12,8 +12,8 @@ public class RequestTimeOutException extends BaseException {
 		super();
 	}
 
-	public RequestTimeOutException(Errors error, Object data) {
-		super(error, data);
+	public RequestTimeOutException(Errors error, String msg) {
+		super(error, msg);
 	}
 
 	public RequestTimeOutException(Errors error) {

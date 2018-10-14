@@ -14,8 +14,8 @@ public class UserInvalidException extends BaseException {
         super();
     }
 
-    public UserInvalidException(Errors error, Object data) {
-        super(error, data);
+    public UserInvalidException(Errors error, String msg) {
+        super(error, msg);
     }
 
     public UserInvalidException(Errors error) {

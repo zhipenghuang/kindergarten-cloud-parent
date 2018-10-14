@@ -13,8 +13,8 @@ public class ParamsException extends BaseException {
 		super();
 	}
 
-	public ParamsException(Errors error, Object data) {
-		super(error, data);
+	public ParamsException(Errors error, String msg) {
+		super(error, msg);
 	}
 
 	public ParamsException(Errors error) {

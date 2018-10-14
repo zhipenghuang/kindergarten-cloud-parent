@@ -44,8 +44,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @author ace
- * @create 2018/3/12.
+ * @author hzp
+ * @create 2018/10/12.
  */
 @Configuration
 @Slf4j
@@ -124,7 +124,7 @@ public class AccessGatewayFilter implements GlobalFilter {
     /**
      * 网关抛异常
      *
-     * @param ServerWebExchange,ResponseEntity
+     * @param serverWebExchange,ResponseEntity
      */
     @NotNull
     private Mono<Void> getVoidMono(ServerWebExchange serverWebExchange, ResponseEntity body) {
@@ -165,7 +165,7 @@ public class AccessGatewayFilter implements GlobalFilter {
     }
 
     /**
-     * 返回session中的用户信息
+     * 返回token中的用户信息
      *
      * @param request
      * @param ctx

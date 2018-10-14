@@ -14,8 +14,8 @@ public class ClientInvalidException extends BaseException {
         super();
     }
 
-    public ClientInvalidException(Errors error, Object data) {
-        super(error, data);
+    public ClientInvalidException(Errors error, String msg) {
+        super(error, msg);
     }
 
     public ClientInvalidException(Errors error) {

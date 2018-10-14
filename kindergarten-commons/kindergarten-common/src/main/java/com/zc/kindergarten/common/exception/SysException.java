@@ -12,8 +12,8 @@ public class SysException extends BaseException {
 		super();
 	}
 
-	public SysException(Errors error, Object data) {
-		super(error, data);
+	public SysException(Errors error, String msg) {
+		super(error, msg);
 	}
 
 	public SysException(Errors error) {

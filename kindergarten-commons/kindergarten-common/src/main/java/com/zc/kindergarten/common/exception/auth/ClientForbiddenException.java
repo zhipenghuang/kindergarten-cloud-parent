@@ -13,8 +13,8 @@ public class ClientForbiddenException extends BaseException {
 		super();
 	}
 
-	public ClientForbiddenException(Errors error, Object data) {
-		super(error, data);
+	public ClientForbiddenException(Errors error, String msg) {
+		super(error, msg);
 	}
 
 	public ClientForbiddenException(Errors error) {

@@ -13,8 +13,8 @@ public class ClientTokenException extends BaseException {
 		super();
 	}
 
-	public ClientTokenException(Errors error, Object data) {
-		super(error, data);
+	public ClientTokenException(Errors error, String msg) {
+		super(error, msg);
 	}
 
 	public ClientTokenException(Errors error) {

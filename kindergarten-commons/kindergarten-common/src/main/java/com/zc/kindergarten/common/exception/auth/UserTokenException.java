@@ -14,8 +14,8 @@ public class UserTokenException extends BaseException {
 		super();
 	}
 
-	public UserTokenException(Errors error, Object data) {
-		super(error, data);
+	public UserTokenException(Errors error, String msg) {
+		super(error, msg);
 	}
 
 	public UserTokenException(Errors error) {
