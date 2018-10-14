@@ -12,9 +12,7 @@
     <artifactId>kindergarten-monitor</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>kindergarten-admin-server</module>
         <module>kindergarten-zipkin-server</module>
     </modules>
-
 
 </project>

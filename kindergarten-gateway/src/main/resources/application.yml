@@ -4,21 +4,25 @@ server:
 spring:
   application:
     name: kindergarten-gateway
-  redis:
-    database: 10
-    host: ${redis.host:192.168.0.108}
-    password: ${redis.password:zcadmin}
-    port: ${redis.port:6379}
-  rabbitmq:
-    host: ${RABBIT_MQ_HOST:192.168.0.108}
-    port:  ${RABBIT_MQ_PORT:5672}
-    username: guest
-    password: guest
+  zipkin:
+    baseUrl: http://${zipkin.host:127.0.0.1}:${zipkin.port:9411}
   sleuth:
     enabled: true
     http:
       legacy:
         enabled: true
+    sampler:
+      percentage: 1.0 #需要采集请求的百分比1.0 100%
+  redis:
+    database: 10
+    host: ${redis.host:192.168.153.129}
+    password: ${redis.password:172594}
+    port: ${redis.port:6379}
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:192.168.153.129}
+    port:  ${RABBIT_MQ_PORT:5672}
+    username: guest
+    password: guest
   cloud:
     gateway:
       locator:
