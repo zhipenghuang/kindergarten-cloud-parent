@@ -7,6 +7,15 @@ spring:
     user:
       name: zc
       password: zc
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+      health:
+        show-details: ALWAYS
 ---
 server:
   port: 8063
@@ -20,6 +29,9 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port} #该配置项作用:注册中心显示该服务运行的服务器ip和端口
     enable-self-preservation: false #关闭自我保护
     eviction-interval-timer-in-ms: 10*1000 #10s清理无效服务
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
   client:
     serviceUrl:
       defaultZone: http://zc:zc@${eureka.host:discovery2}:${eureka.port:8064}/eureka/
@@ -37,6 +49,9 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port} #该配置项作用:注册中心显示该服务运行的服务器ip和端口
     enable-self-preservation: false #关闭自我保护
     eviction-interval-timer-in-ms: 10*1000 #10s清理无效服务
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
   client:
     serviceUrl:
       defaultZone: http://zc:zc@${eureka.host:discovery1}:${eureka.port:8063}/eureka/
