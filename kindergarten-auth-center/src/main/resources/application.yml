@@ -4,7 +4,11 @@ spring:
   application:
     name: kindergarten-auth-center
   zipkin:
-    baseUrl: http://${zipkin.host:127.0.0.1}:${zipkin.port:9411}
+    sender:
+      type: rabbit
+    locator:
+      discovery:
+        enabled: true
   sleuth:
     enabled: true
     http:
@@ -61,6 +65,7 @@ spring:
     port:  ${RABBIT_MQ_PORT:5673}
     username: guest
     password: guest
+    queue: zipkin
 
 mybatis:
   mapper-locations: "classpath*:mapper/*.xml"
@@ -103,7 +108,7 @@ eureka:
     eviction-interval-timer-in-ms: 10*1000 #10s清理无效服务
   client:
     serviceUrl:
-      defaultZone: http://zc:zc@${eureka.host:discovery1}:${eureka.port:8063}/eureka/,http://zc:zc@${eureka.host2:discovery2}:${eureka.port2:8064}/eureka/
+      defaultZone: http://zc:zc@${eureka.host:discovery1}:${eureka.port:8066}/eureka/,http://zc:zc@${eureka.host2:discovery2}:${eureka.port2:8067}/eureka/
 
 jwt:
   token-header: Authorization

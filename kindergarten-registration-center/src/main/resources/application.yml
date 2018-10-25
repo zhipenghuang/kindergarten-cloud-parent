@@ -18,7 +18,7 @@ management:
         show-details: ALWAYS
 ---
 server:
-  port: 8063
+  port: 8066
 spring:
   profiles: discovery1 #指定profile=discovery1
 
@@ -34,11 +34,11 @@ eureka:
       user.password: ${spring.security.user.password}
   client:
     serviceUrl:
-      defaultZone: http://zc:zc@${eureka.host:discovery2}:${eureka.port:8064}/eureka/
+      defaultZone: http://zc:zc@${eureka.host:discovery2}:${eureka.port:8067}/eureka/
 
 ---
 server:
-  port: 8064
+  port: 8067
 spring:
   profiles: discovery2 #指定profile=discovery2
 
@@ -54,4 +54,4 @@ eureka:
       user.password: ${spring.security.user.password}
   client:
     serviceUrl:
-      defaultZone: http://zc:zc@${eureka.host:discovery1}:${eureka.port:8063}/eureka/
+      defaultZone: http://zc:zc@${eureka.host:discovery1}:${eureka.port:8066}/eureka/

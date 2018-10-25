@@ -19,6 +19,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class DbLog extends Thread {
     private static DbLog dblog = null;
     private static BlockingQueue<LogInfo> logInfoQueue = new LinkedBlockingQueue<>(1024);
+    private ILogService logService;
+
 
     public ILogService getLogService() {
         return logService;
@@ -30,8 +32,6 @@ public class DbLog extends Thread {
         }
         return this;
     }
-
-    private ILogService logService;
     public static synchronized DbLog getInstance() {
         if (dblog == null) {
             dblog = new DbLog();
