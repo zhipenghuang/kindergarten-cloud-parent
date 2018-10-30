@@ -89,6 +89,15 @@ management:
         health:
           show-details: ALWAYS
 
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  OkToRetryOnAllOperations: false
+
 gate:
   ignore:
     startWith: /auth/jwt
