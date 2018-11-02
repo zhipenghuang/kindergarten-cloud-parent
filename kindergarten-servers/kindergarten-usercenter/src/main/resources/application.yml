@@ -72,6 +72,8 @@ mybatis:
 feign:
   httpclient:
     enabled: false
+  hystrix:
+      enabled: true
   okhttp:
     enabled: true
 

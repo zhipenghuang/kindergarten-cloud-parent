@@ -66,6 +66,8 @@ eureka:
 feign:
   httpclient:
     enabled: false
+  hystrix:
+    enabled: true
   okhttp:
     enabled: true
   compression:
@@ -75,6 +77,13 @@ feign:
       min-request-size: 2048
     response:
       enabled: true
+
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    strategy: SEMAPHORE
 
 logging:
   level:
