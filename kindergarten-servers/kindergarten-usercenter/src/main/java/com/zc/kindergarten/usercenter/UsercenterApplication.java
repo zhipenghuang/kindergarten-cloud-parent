@@ -8,6 +8,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author hzp
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableScheduling
 @EnableAceAuthClient
 @EnableTransactionManagement
+@EnableSwagger2
 public class UsercenterApplication {
 	public static void main(String[] args) {
         SpringApplication.run(UsercenterApplication.class, args);  }

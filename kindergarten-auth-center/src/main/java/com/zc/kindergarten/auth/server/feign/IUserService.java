@@ -1,6 +1,7 @@
 package com.zc.kindergarten.auth.server.feign;
 
 import com.zc.kindergarten.auth.server.config.FeignConfiguration;
+import com.zc.kindergarten.auth.server.feign.fallback.IUserServiceFallBack;
 import com.zc.kindergarten.auth.server.vo.request.JwtAuthenticationRequest;
 import com.zc.kindergarten.common.msg.ResponseEntity;
 import com.zc.kindergarten.common.vo.UserInfo;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author hzp
  * @create 2018-09-26
  */
-@FeignClient(value = "kindergarten-usercenter", configuration = FeignConfiguration.class)
+@FeignClient(value = "kindergarten-usercenter", configuration = FeignConfiguration.class, fallback = IUserServiceFallBack.class)
 public interface IUserService {
 
     /**

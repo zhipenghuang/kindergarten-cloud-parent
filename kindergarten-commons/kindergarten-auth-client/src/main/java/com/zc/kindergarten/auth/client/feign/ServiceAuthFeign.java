@@ -1,5 +1,6 @@
 package com.zc.kindergarten.auth.client.feign;
 
+import com.zc.kindergarten.auth.client.feign.fallback.ServiceAuthFallBack;
 import com.zc.kindergarten.common.msg.ResponseEntity;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import java.util.List;
  * @author hzp
  * @create 2018/9/19.
  */
-@FeignClient(value = "${auth.serviceId}", configuration = {})
+@FeignClient(value = "${auth.serviceId}",fallback = ServiceAuthFallBack.class)
 public interface ServiceAuthFeign {
 
     @RequestMapping(value = "/client/myClient")
