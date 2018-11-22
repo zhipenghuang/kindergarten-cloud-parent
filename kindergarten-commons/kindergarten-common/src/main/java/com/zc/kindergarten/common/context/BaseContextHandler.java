@@ -14,7 +14,7 @@ public class BaseContextHandler {
 
     //InheritableThreadLocal线程上下文切换父线程会赋值给新线程，feign开启hystrix后，
     // 如果hystrix选择官方推荐的thread策略，会导致header丢失，以此解决。
-    // 但是InheritableThreadLocal不能解决线程复用带来的问题，如果后期出现问题，原因可能在这儿
+    // 但是InheritableThreadLocal不能解决线程复用带来的问题，如果后期出现问题，原因可能在这儿（阿里ttl可解决）
     public static ThreadLocal<Map<String, Object>> threadLocal = new InheritableThreadLocal<>();
 
     public static void set(String key, Object value) {

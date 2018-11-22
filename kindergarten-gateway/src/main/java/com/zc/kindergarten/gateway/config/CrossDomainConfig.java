@@ -1,4 +1,4 @@
-package com.zc.kindergarten.auth.server.config;
+package com.zc.kindergarten.gateway.config;
 
 import lombok.Data;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

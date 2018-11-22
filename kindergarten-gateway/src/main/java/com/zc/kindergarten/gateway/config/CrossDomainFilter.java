@@ -1,13 +1,9 @@
-package com.zc.kindergarten.usercenter.config;
+package com.zc.kindergarten.gateway.config;
 
-import com.zc.kindergarten.common.util.RepeatedlyReadRequestWrapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -42,15 +38,7 @@ public class CrossDomainFilter extends OncePerRequestFilter {
                 response.addHeader("Access-Control-Allow-Methods", "GET, POST");
                 response.addHeader("Access-Control-Allow-Headers", "X-Requested-With, Origin, Content-Type, Cookie");
             }
-            ServletRequest requestWrapper = null;
-            if (request instanceof HttpServletRequest && request.getMethod().equalsIgnoreCase("post") && StringUtils.isNotBlank(request.getContentType()) && request.getContentType().contains("application/json")) {
-                requestWrapper = new RepeatedlyReadRequestWrapper(request);
-            }
-            if (null == requestWrapper) {
-                filterChain.doFilter(request, response);
-            } else {
-                filterChain.doFilter(requestWrapper, response);
-            }
+            filterChain.doFilter(request, response);
         }
     }
 
