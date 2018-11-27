@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<PermissionInfo> getAllPermission() {
 		List<Menu> menus = menuMapper.selectAll();
-		List<PermissionInfo> result = new ArrayList<PermissionInfo>();
+		List<PermissionInfo> result = new ArrayList<>();
 		PermissionInfo info = null;
 		menu2permission(menus, result);
 		List<Element> elements = elementMapper.selectAllElementPermissions();
@@ -100,10 +100,12 @@ public class UserServiceImpl implements UserService {
 		}
 		return TreeUtil.bulid(trees, root);
 	}
-	public List<PermissionInfo> getPermissionByUsername(String username) {
+
+	@Override
+    public List<PermissionInfo> getPermissionByUsername(String username) {
 		User user = getUserByUsername(username);
 		List<Menu> menus = menuMapper.selectAuthorityMenuByUserId(user.getId());
-		List<PermissionInfo> result = new ArrayList<PermissionInfo>();
+		List<PermissionInfo> result = new ArrayList<>();
 		PermissionInfo info = null;
 		menu2permission(menus, result);
 		List<Element> elements = elementMapper.selectAuthorityElementByUserId(user.getId() + "");

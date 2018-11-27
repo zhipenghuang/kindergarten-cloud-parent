@@ -73,11 +73,11 @@ public class GroupServiceImpl implements GroupService {
 	public void modifyAuthorityMenu(int groupId, String[] menus) {
 		resourceAuthorityMapper.deleteByAuthorityIdAndResourceType(groupId + "", AdminCommonConstant.RESOURCE_TYPE_MENU);
 		List<Menu> menuList = menuMapper.selectAll();
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap(16);
 		for (Menu menu : menuList) {
 			map.put(menu.getId().toString(), menu.getParentId().toString());
 		}
-		Set<String> relationMenus = new HashSet<String>();
+		Set<String> relationMenus = new HashSet<>();
 		relationMenus.addAll(Arrays.asList(menus));
 		ResourceAuthority authority = null;
 		for (String menuId : menus) {
@@ -104,7 +104,7 @@ public class GroupServiceImpl implements GroupService {
 	@Override
 	public List<AuthorityMenuTree> getAuthorityMenu(int groupId) {
 		List<Menu> menus = menuMapper.selectMenuByAuthorityId(String.valueOf(groupId), AdminCommonConstant.AUTHORITY_TYPE_GROUP);
-		List<AuthorityMenuTree> trees = new ArrayList<AuthorityMenuTree>();
+		List<AuthorityMenuTree> trees = new ArrayList<>();
 		AuthorityMenuTree node = null;
 		for (Menu menu : menus) {
 			node = new AuthorityMenuTree();
@@ -133,7 +133,8 @@ public class GroupServiceImpl implements GroupService {
 		resourceAuthorityMapper.delete(authority);
 	}
 
-	public List<Integer> getAuthorityElement(int groupId) {
+	@Override
+    public List<Integer> getAuthorityElement(int groupId) {
 		ResourceAuthority authority = new ResourceAuthority(AdminCommonConstant.AUTHORITY_TYPE_GROUP, AdminCommonConstant.RESOURCE_TYPE_BTN);
 		authority.setAuthorityId(groupId + "");
 		List<ResourceAuthority> authorities = resourceAuthorityMapper.select(authority);
@@ -159,7 +160,7 @@ public class GroupServiceImpl implements GroupService {
 	}
 
 	private List<GroupTree> getTree(List<Group> groups, Long root) {
-		List<GroupTree> trees = new ArrayList<GroupTree>();
+		List<GroupTree> trees = new ArrayList();
 		GroupTree node = null;
 		for (Group group : groups) {
 			node = new GroupTree();

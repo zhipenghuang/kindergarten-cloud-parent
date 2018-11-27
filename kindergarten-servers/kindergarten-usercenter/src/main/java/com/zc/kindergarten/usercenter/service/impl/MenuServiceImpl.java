@@ -44,7 +44,7 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	private List<MenuTree> getMenuTree(List<Menu> menus, Long root) {
-		List<MenuTree> trees = new ArrayList<MenuTree>();
+		List<MenuTree> trees = new ArrayList<>();
 		MenuTree node = null;
 		for (Menu menu : menus) {
 			node = new MenuTree();
